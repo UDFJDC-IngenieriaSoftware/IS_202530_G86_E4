@@ -1,4 +1,3 @@
-# groups/models_sql.py
 from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
 from sqlalchemy.orm import relationship
 from database import Base
@@ -12,11 +11,9 @@ class Group(Base):
     created_by = Column(Integer, ForeignKey("users.id"))
     created_at = Column(DateTime, default=datetime.utcnow)
 
-    # Relaciones
     owner = relationship("User", back_populates="groups_owned")
     members = relationship("GroupMember", back_populates="group", cascade="all, delete")
     expenses = relationship("Expense", back_populates="group", cascade="all, delete")
-
 
 class GroupMember(Base):
     __tablename__ = "group_members"
@@ -26,6 +23,5 @@ class GroupMember(Base):
     user_id = Column(Integer, ForeignKey("users.id"))
     role = Column(String, default="member")
 
-    # Relaciones
     group = relationship("Group", back_populates="members")
     user = relationship("User", back_populates="group_memberships")
