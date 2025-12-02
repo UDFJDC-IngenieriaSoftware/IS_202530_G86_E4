@@ -13,6 +13,6 @@ class User(Base):
     # Relaciones
     groups_owned = relationship("Group", back_populates="owner")
     group_memberships = relationship("GroupMember", back_populates="user")
-    expenses_created = relationship("Expense", back_populates="creator")
-    expenses_paid = relationship("Expense", back_populates="payer")
+    expenses_created = relationship("Expense", back_populates="creator", foreign_keys="Expense.created_by")
+    expenses_paid = relationship("Expense", back_populates="payer", foreign_keys="Expense.paid_by")
     expense_participation = relationship("ExpenseParticipant", back_populates="user")

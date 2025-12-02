@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-KEY = os.getenv("KEY")
+KEY = os.getenv("SECRET_KEY")
 ALGORITHM = os.getenv("ALGORITHM")
 ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "60"))
 

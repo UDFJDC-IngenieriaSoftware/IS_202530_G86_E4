@@ -17,7 +17,20 @@ def create_group(group_in: schemas.GroupCreate, db: Session = Depends(get_db), c
 @router.get("/my-groups", response_model=list[schemas.GroupOut])
 def my_groups(db: Session = Depends(get_db), current_user=Depends(get_current_user)):
     groups = group_repo.get_groups_for_user(db, current_user.id)
-    return groups
+    
+    # Add owner names
+    result = []
+    for g in groups:
+        owner = get_user_by_id(db, g.created_by)
+        group_dict = {
+            "id": g.id,
+            "name": g.name,
+            "created_by": g.created_by,
+            "created_at": g.created_at,
+            "owner_name": owner.full_name if owner else f"User #{g.created_by}"
+        }
+        result.append(group_dict)
+    return result
 
 @router.get("/{group_id}", response_model=schemas.GroupOut)
 def get_group(group_id: int, db: Session = Depends(get_db), current_user=Depends(get_current_user)):
@@ -49,4 +62,17 @@ def list_members(group_id: int, db: Session = Depends(get_db), current_user=Depe
     # check membership
     if not any(m.user_id == current_user.id for m in ms):
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="No perteneces a este grupo")
-    return ms
+    
+    # Add user names
+    from users.repository import get_user_by_id
+    result = []
+    for m in ms:
+        user = get_user_by_id(db, m.user_id)
+        member_dict = {
+            "id": m.id,
+            "user_id": m.user_id,
+            "role": m.role,
+            "user_name": user.full_name if user else f"User #{m.user_id}"
+        }
+        result.append(member_dict)
+    return result

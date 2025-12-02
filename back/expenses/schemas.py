@@ -32,6 +32,7 @@ class ExpenseOut(BaseModel):
     group_id: int
     created_by: int
     paid_by: int
+    payer_name: str = None
     participants: List[ExpenseParticipantOut]
 
     class Config:

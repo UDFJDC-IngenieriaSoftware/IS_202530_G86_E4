@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DiviPay - Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <!DOCTYPE html>
+    <html lang="es">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>DiviPay - Dashboard</title>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+
+<body>
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="dashboard.html" class="logo">DiviPay</a>
+            <div>
+                <span id="user-name" style="margin-right: 1rem; color: var(--text-muted);"></span>
+                <button onclick="openProfileModal()" class="btn btn-outline" style="margin-right: 0.5rem;">Mi
+                    Perfil</button>
+                <button onclick="API.logout()" class="btn btn-outline">Cerrar Sesión</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container main-content">
+        <div class="section-header">
+            <h1>Mis Grupos</h1>
+            <button onclick="openCreateGroupModal()" class="btn btn-primary">
+                + Nuevo Grupo
+            </button>
+        </div>
+
+        <div id="groups-grid" class="grid-groups">
+            <!-- Groups will be inserted here -->
+        </div>
+    </main>
+
+    <!-- Create Group Modal -->
+    <div id="create-group-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2 class="mb-4">Crear Nuevo Grupo</h2>
+            <form id="create-group-form">
+                <div class="form-group">
+                    <label class="form-label">Nombre del Grupo</label>
+                    <input type="text" name="name" class="form-input" required placeholder="Ej: Viaje a la Playa">
+                </div>
+                <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                    <button type="button" onclick="closeCreateGroupModal()" class="btn btn-outline">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Crear</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Profile Modal -->
+    <div id="profile-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2 class="mb-4">Mi Perfil</h2>
+            <div class="form-group">
+                <label class="form-label">Mi ID (Comparte esto para que te agreguen)</label>
+                <div style="display: flex; gap: 0.5rem;">
+                    <input type="text" id="profile-id" class="form-input" readonly
+                        style="background-color: var(--bg-color);">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Nombre</label>
+                <input type="text" id="profile-name" class="form-input" readonly
+                    style="background-color: var(--bg-color);">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Email</label>
+                <input type="text" id="profile-email" class="form-input" readonly
+                    style="background-color: var(--bg-color);">
+            </div>
+            <div style="display: flex; justify-content: flex-end;">
+                <button type="button" onclick="closeProfileModal()" class="btn btn-primary">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+
+</html>

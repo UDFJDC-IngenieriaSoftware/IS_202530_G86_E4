@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DiviPay - Detalle del Grupo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="dashboard.html" class="logo">DiviPay</a>
+            <div>
+                <a href="dashboard.html" class="btn btn-outline" style="margin-right: 1rem;">Volver</a>
+                <button onclick="API.logout()" class="btn btn-outline">Cerrar Sesión</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container main-content">
+        <div class="section-header">
+            <h1 id="group-name">Cargando...</h1>
+            <div>
+                <button onclick="openAddMemberModal()" class="btn btn-outline" style="margin-right: 0.5rem;">+
+                    Miembro</button>
+                <button onclick="openAddExpenseModal()" class="btn btn-primary">+ Gasto</button>
+            </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 250px 1fr; gap: 2rem;">
+            <!-- Sidebar: Members -->
+            <div class="card">
+                <h3 class="mb-4">Miembros</h3>
+                <div id="members-list">
+                    <!-- Members will be here -->
+                </div>
+            </div>
+
+            <!-- Main: Expenses -->
+            <div class="card">
+                <h3 class="mb-4">Gastos Recientes</h3>
+                <div id="expenses-list">
+                    <!-- Expenses will be here -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Add Member Modal -->
+    <div id="add-member-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2 class="mb-4">Agregar Miembro</h2>
+            <form id="add-member-form">
+                <div class="form-group">
+                    <label class="form-label">ID de Usuario</label>
+                    <input type="number" name="user_id" class="form-input" required placeholder="ID del usuario">
+                    <small class="text-muted">Pide el ID a tu amigo (visible en su perfil)</small>
+                </div>
+                <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                    <button type="button" onclick="closeAddMemberModal()" class="btn btn-outline">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Agregar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Expense Modal -->
+    <div id="add-expense-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2 class="mb-4">Nuevo Gasto</h2>
+            <form id="add-expense-form">
+                <div class="form-group">
+                    <label class="form-label">Descripción</label>
+                    <input type="text" name="description" class="form-input" required placeholder="Cena, Taxi, etc.">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Monto</label>
+                    <input type="number" name="amount" class="form-input" required step="0.01" min="0">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Pagado por (ID)</label>
+                    <select name="paid_by_id" id="paid-by-select" class="form-input" required>
+                        <!-- Options filled by JS -->
+                    </select>
+                </div>
+                <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                    <button type="button" onclick="closeAddExpenseModal()" class="btn btn-outline">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/group.js"></script>
+</body>
+
+</html>

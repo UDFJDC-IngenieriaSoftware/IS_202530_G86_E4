@@ -10,6 +10,7 @@ class GroupOut(BaseModel):
     name: str
     created_by: int
     created_at: datetime
+    owner_name: str = None
 
     class Config:
         orm_mode = True
@@ -22,6 +23,7 @@ class MemberOut(BaseModel):
     id: int
     user_id: int
     role: str
+    user_name: str = None
 
     class Config:
         orm_mode = True
