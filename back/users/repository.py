@@ -1,13 +1,16 @@
-from .models import UserInDB
-from auth.security import hash_password
+from sqlalchemy.orm import Session
+from .models_sql import User
 
-users_db_trial = {
-    "user@example.com": UserInDB(
-        email="user@example.com",
-        hashed_password=hash_password("12345"),
-        full_name="User Example"
+def get_user_by_email(db: Session, email: str):
+    return db.query(User).filter(User.email == email).first()
+
+def create_user(db: Session, email: str, full_name: str, hashed_password: str):
+    user = User(
+        email=email,
+        full_name=full_name,
+        hashed_password=hashed_password
     )
-}
-
-def get_user_by_email(email: str):
-    return users_db_trial.get(email)
+    db.add(user)
+    db.commit()
+    db.refresh(user)
+    return user
