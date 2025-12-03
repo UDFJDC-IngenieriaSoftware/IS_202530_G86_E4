@@ -24,6 +24,8 @@
         <div class="section-header">
             <h1 id="group-name">Cargando...</h1>
             <div>
+                <button onclick="openBalanceModal()" class="btn btn-outline" style="margin-right: 0.5rem;">Ver
+                    Balance</button>
                 <button onclick="openAddMemberModal()" class="btn btn-outline" style="margin-right: 0.5rem;">+
                     Miembro</button>
                 <button onclick="openAddExpenseModal()" class="btn btn-primary">+ Gasto</button>
@@ -69,7 +71,7 @@
 
     <!-- Add Expense Modal -->
     <div id="add-expense-modal" class="modal hidden">
-        <div class="modal-content">
+        <div class="modal-content" style="max-width: 600px;">
             <h2 class="mb-4">Nuevo Gasto</h2>
             <form id="add-expense-form">
                 <div class="form-group">
@@ -77,20 +79,64 @@
                     <input type="text" name="description" class="form-input" required placeholder="Cena, Taxi, etc.">
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Monto</label>
-                    <input type="number" name="amount" class="form-input" required step="0.01" min="0">
+                    <label class="form-label">Monto Total</label>
+                    <input type="number" name="amount" id="expense-amount" class="form-input" required step="0.01"
+                        min="0">
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Pagado por (ID)</label>
+                    <label class="form-label">Pagado por</label>
                     <select name="paid_by_id" id="paid-by-select" class="form-input" required>
                         <!-- Options filled by JS -->
                     </select>
                 </div>
+
+                <div class="form-group">
+                    <label class="form-label">Método de División</label>
+                    <select name="split_method" id="split-method-select" class="form-input" required>
+                        <option value="equal">Equitativo (dividir en partes iguales)</option>
+                        <option value="percentage">Por Porcentaje</option>
+                        <option value="manual">Manual (especificar montos)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Participantes</label>
+                    <div id="participants-container">
+                        <!-- Participants will be added dynamically -->
+                    </div>
+                </div>
+
                 <div style="display: flex; gap: 1rem; justify-content: flex-end;">
                     <button type="button" onclick="closeAddExpenseModal()" class="btn btn-outline">Cancelar</button>
                     <button type="submit" class="btn btn-primary">Guardar</button>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <!-- Balance Modal -->
+    <div id="balance-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2 class="mb-4">Balance del Grupo</h2>
+            <div id="balance-content">
+                <!-- Balance will be shown here -->
+            </div>
+            <div style="display: flex; justify-content: flex-end; margin-top: 1.5rem;">
+                <button onclick="closeBalanceModal()" class="btn btn-primary">Cerrar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Expense Details Modal -->
+    <div id="expense-details-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2 class="mb-4" id="expense-detail-title">Detalle del Gasto</h2>
+            <div id="expense-details-content">
+                <!-- Expense details will be shown here -->
+            </div>
+            <div style="display: flex; justify-content: flex-end; margin-top: 1.5rem;">
+                <button onclick="closeExpenseDetailsModal()" class="btn btn-primary">Cerrar</button>
+            </div>
         </div>
     </div>
 

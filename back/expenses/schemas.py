@@ -11,7 +11,7 @@ class SplitMethod(str, Enum):
 #Los participantes del gasto
 class ExpenseParticipantCreate(BaseModel):
     user_id: int
-    amount_owed: float = Field(..., ge=0)
+    amount_owed: Optional[float] = None
     percentage: Optional[float] = None  # si usan división por porcentaje
 
 
@@ -19,6 +19,7 @@ class ExpenseParticipantOut(BaseModel):
     user_id: int
     amount_owed: float
     percentage: Optional[float]
+    participant_name: str = None
 
     class Config:
         orm_mode = True
@@ -40,8 +41,10 @@ class ExpenseOut(BaseModel):
     amount_total: float
     group_id: int
     created_by: int
+    created_at: str = None
     paid_by: int
     payer_name: str = None
+    creator_name: str = None
     participants: List[ExpenseParticipantOut]
 
     class Config:
