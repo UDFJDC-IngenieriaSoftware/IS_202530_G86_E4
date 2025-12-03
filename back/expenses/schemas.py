@@ -1,5 +1,12 @@
 from pydantic import BaseModel, Field
 from typing import List, Optional
+from enum import Enum
+
+#Dividir los gastos
+class SplitMethod(str, Enum):
+    equal = "equal"
+    percentage = "percentage"
+    manual = "manual"
 
 #Los participantes del gasto
 class ExpenseParticipantCreate(BaseModel):
@@ -20,9 +27,11 @@ class ExpenseParticipantOut(BaseModel):
 # El gasto relacionado
 class ExpenseCreate(BaseModel):
     title: str
-    amount_total: float = Field(..., gt=0)
+    amount_total: float
     paid_by: int
+    split_method: SplitMethod = SplitMethod.equal
     participants: List[ExpenseParticipantCreate]
+
 
 
 class ExpenseOut(BaseModel):

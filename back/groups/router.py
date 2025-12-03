@@ -5,6 +5,7 @@ from database import get_db
 from auth.deps import get_current_user
 from groups import schemas
 from groups import repository as group_repo
+from groups.balance_service import get_individual_balances, simplify_balances
 from users.repository import get_user_by_id
 
 router = APIRouter(prefix="/groups", tags=["Groups"])
@@ -76,3 +77,20 @@ def list_members(group_id: int, db: Session = Depends(get_db), current_user=Depe
         }
         result.append(member_dict)
     return result
+
+
+@router.get("/{group_id}/balance")
+def group_balance(
+    group_id: int,
+    db: Session = Depends(get_db),
+    current_user=Depends(get_current_user)
+):
+    # validar que pertenece al grupo
+    members = group_repo.list_members(db, group_id)
+    if not any(m.user_id == current_user.id for m in members):
+        raise HTTPException(status_code=403, detail="No perteneces al grupo")
+
+    balances = get_individual_balances(db, group_id)
+    final = simplify_balances(balances)
+
+    return final
