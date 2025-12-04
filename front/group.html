@@ -13,27 +13,41 @@
 <body>
     <nav class="navbar">
         <div class="container nav-content">
-            <a href="dashboard.html" class="logo">DiviPay</a>
-            <div>
-                <a href="dashboard.html" class="btn btn-outline" style="margin-right: 1rem;">Volver</a>
-                <button onclick="API.logout()" class="btn btn-outline">Cerrar Sesión</button>
+            <a href="dashboard.html" class="logo">
+                <img src="/front/logo.png" alt="DiviPay" class="logo-icon">
+                <img src="/front/logoletra.png" alt="DiviPay" class="logo-text-dashboard" style="height: 120px;">
+            </a>
+            <div class="nav-actions">
+                <a href="dashboard.html" class="btn btn-outline btn-spacing desktop-only">Volver</a>
+                <button onclick="API.logout()" class="btn btn-logout desktop-only">Cerrar Sesión</button>
+                <button class="hamburger-btn" onclick="toggleMobileMenu()" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </div>
     </nav>
 
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu hidden">
+        <div class="mobile-menu-content">
+            <a href="dashboard.html" class="btn btn-outline mobile-menu-btn">Volver</a>
+            <button onclick="API.logout()" class="btn btn-logout mobile-menu-btn">Cerrar Sesión</button>
+        </div>
+    </div>
+
     <main class="container main-content">
         <div class="section-header">
             <h1 id="group-name">Cargando...</h1>
-            <div>
-                <button onclick="openBalanceModal()" class="btn btn-outline" style="margin-right: 0.5rem;">Ver
-                    Balance</button>
-                <button onclick="openAddMemberModal()" class="btn btn-outline" style="margin-right: 0.5rem;">+
-                    Miembro</button>
+            <div class="group-actions">
+                <button onclick="openBalanceModal()" class="btn btn-outline btn-spacing">Ver Balance</button>
+                <button onclick="openAddMemberModal()" class="btn btn-outline btn-spacing">+ Miembro</button>
                 <button onclick="openAddExpenseModal()" class="btn btn-primary">+ Gasto</button>
             </div>
         </div>
 
-        <div style="display: grid; grid-template-columns: 250px 1fr; gap: 2rem;">
+        <div class="group-layout">
             <!-- Sidebar: Members -->
             <div class="card">
                 <h3 class="mb-4">Miembros</h3>
@@ -62,7 +76,7 @@
                     <input type="number" name="user_id" class="form-input" required placeholder="ID del usuario">
                     <small class="text-muted">Pide el ID a tu amigo (visible en su perfil)</small>
                 </div>
-                <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                <div class="modal-buttons">
                     <button type="button" onclick="closeAddMemberModal()" class="btn btn-outline">Cancelar</button>
                     <button type="submit" class="btn btn-primary">Agregar</button>
                 </div>
@@ -72,7 +86,7 @@
 
     <!-- Add Expense Modal -->
     <div id="add-expense-modal" class="modal hidden">
-        <div class="modal-content" style="max-width: 600px;">
+        <div class="modal-content modal-wide">
             <h2 class="mb-4">Nuevo Gasto</h2>
             <form id="add-expense-form">
                 <div class="form-group">
@@ -107,7 +121,7 @@
                     </div>
                 </div>
 
-                <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                <div class="modal-buttons">
                     <button type="button" onclick="closeAddExpenseModal()" class="btn btn-outline">Cancelar</button>
                     <button type="submit" class="btn btn-primary">Guardar</button>
                 </div>
@@ -122,7 +136,7 @@
             <div id="balance-content">
                 <!-- Balance will be shown here -->
             </div>
-            <div style="display: flex; justify-content: flex-end; margin-top: 1.5rem;">
+            <div class="modal-buttons-end">
                 <button onclick="closeBalanceModal()" class="btn btn-primary">Cerrar</button>
             </div>
         </div>
@@ -135,7 +149,7 @@
             <div id="expense-details-content">
                 <!-- Expense details will be shown here -->
             </div>
-            <div style="display: flex; justify-content: flex-end; margin-top: 1.5rem;">
+            <div class="modal-buttons-end">
                 <button onclick="closeExpenseDetailsModal()" class="btn btn-primary">Cerrar</button>
             </div>
         </div>
@@ -143,6 +157,15 @@
 
     <script src="js/api.js"></script>
     <script src="js/group.js"></script>
+    <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const hamburger = document.querySelector('.hamburger-btn');
+            mobileMenu.classList.toggle('hidden');
+            hamburger.classList.toggle('active');
+        }
+    </script>
 </body>
 
 </html>

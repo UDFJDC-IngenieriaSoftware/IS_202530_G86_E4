@@ -8,57 +8,6 @@
     <link rel="icon" type="image/png" href="/front/logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <style>
-        .navbar {
-            padding: 0.05rem 0;
-            /* Reduce la altura de la navbar */
-        }
-
-        /* Navbar logo styles */
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            text-decoration: none;
-        }
-
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-        }
-
-        /* Group card button styles - Clean and simple */
-        .group-card {
-            cursor: pointer;
-            transition: all 0.2s ease;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 1.5rem;
-        }
-
-        .group-card:hover {
-            transform: translateY(-3px);
-            background: rgba(255, 255, 255, 0.05);
-            border-color: var(--primary-color);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-
-        .group-card:active {
-            transform: translateY(-1px);
-        }
-
-        .group-card h3 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: var(--text-color);
-        }
-
-        .group-card p {
-            color: var(--text-muted);
-            font-size: 0.9375rem;
-        }
-    </style>
 </head>
 
 <body>
@@ -66,16 +15,30 @@
         <div class="container nav-content">
             <a href="dashboard.html" class="logo">
                 <img src="/front/logo.png" alt="DiviPay" class="logo-icon">
-                <img src="/front/logoletra.png" alt="DiviPay" style="height: 120px;">
+                <img src="/front/logoletra.png" alt="DiviPay" class="logo-text-dashboard" style="height: 120px;">
             </a>
-            <div>
-                <span id="user-name" style="margin-right: 1rem; color: var(--text-muted);"></span>
-                <button onclick="openProfileModal()" class="btn btn-outline" style="margin-right: 0.5rem;">Mi
-                    Perfil</button>
-                <button onclick="API.logout()" class="btn btn-outline">Cerrar Sesión</button>
+            <div class="nav-actions">
+                <span id="user-name" class="user-name desktop-only"></span>
+                <button onclick="openProfileModal()" class="btn btn-profile btn-spacing desktop-only">Mi Perfil</button>
+                <button onclick="API.logout()" class="btn btn-logout desktop-only">Cerrar Sesión</button>
+                <button class="hamburger-btn" onclick="toggleMobileMenu()" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </div>
     </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu hidden">
+        <div class="mobile-menu-content">
+            <span id="user-name-mobile" class="mobile-user-name"></span>
+            <button onclick="openProfileModal(); toggleMobileMenu();" class="btn btn-profile mobile-menu-btn">Mi
+                Perfil</button>
+            <button onclick="API.logout()" class="btn btn-logout mobile-menu-btn">Cerrar Sesión</button>
+        </div>
+    </div>
 
     <main class="container main-content">
         <div class="section-header">
@@ -99,7 +62,7 @@
                     <label class="form-label">Nombre del Grupo</label>
                     <input type="text" name="name" class="form-input" required placeholder="Ej: Viaje a la Playa">
                 </div>
-                <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                <div class="modal-buttons">
                     <button type="button" onclick="closeCreateGroupModal()" class="btn btn-outline">Cancelar</button>
                     <button type="submit" class="btn btn-primary">Crear</button>
                 </div>
@@ -113,22 +76,19 @@
             <h2 class="mb-4">Mi Perfil</h2>
             <div class="form-group">
                 <label class="form-label">Mi ID (Comparte esto para que te agreguen)</label>
-                <div style="display: flex; gap: 0.5rem;">
-                    <input type="text" id="profile-id" class="form-input" readonly
-                        style="background-color: var(--bg-color);">
+                <div class="profile-input-group">
+                    <input type="text" id="profile-id" class="form-input readonly-input" readonly>
                 </div>
             </div>
             <div class="form-group">
                 <label class="form-label">Nombre</label>
-                <input type="text" id="profile-name" class="form-input" readonly
-                    style="background-color: var(--bg-color);">
+                <input type="text" id="profile-name" class="form-input readonly-input" readonly>
             </div>
             <div class="form-group">
                 <label class="form-label">Email</label>
-                <input type="text" id="profile-email" class="form-input" readonly
-                    style="background-color: var(--bg-color);">
+                <input type="text" id="profile-email" class="form-input readonly-input" readonly>
             </div>
-            <div style="display: flex; justify-content: flex-end;">
+            <div class="modal-buttons">
                 <button type="button" onclick="closeProfileModal()" class="btn btn-primary">Cerrar</button>
             </div>
         </div>

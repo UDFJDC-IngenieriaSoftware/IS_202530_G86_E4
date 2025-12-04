@@ -13,9 +13,21 @@ async function loadUser() {
         const user = await API.get('/users/me');
         currentUser = user;
         document.getElementById('user-name').textContent = user.full_name;
+        const mobileUserName = document.getElementById('user-name-mobile');
+        if (mobileUserName) {
+            mobileUserName.textContent = user.full_name;
+        }
     } catch (error) {
         console.error('Error loading user:', error);
     }
+}
+
+// Mobile Menu Toggle
+function toggleMobileMenu() {
+    const mobileMenu = document.getElementById('mobile-menu');
+    const hamburger = document.querySelector('.hamburger-btn');
+    mobileMenu.classList.toggle('hidden');
+    hamburger.classList.toggle('active');
 }
 
 function openProfileModal() {
