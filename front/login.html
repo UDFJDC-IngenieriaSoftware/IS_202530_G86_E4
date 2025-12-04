@@ -15,15 +15,16 @@
         <!-- Left Side - Form -->
         <div class="split-left">
             <div class="auth-form-container">
-                <div class="auth-logo">
+                <a href="index.html" class="auth-logo">
                     <img src="/front/logo.png" alt="DiviPay" class="auth-logo-icon">
                     <img src="/front/logoletra.png" alt="DiviPay" class="auth-logo-text">
-                </div>
+                </a>
 
                 <!-- Login Form -->
                 <div id="login-card">
                     <h1 class="auth-title">Bienvenido de nuevo</h1>
                     <p class="auth-subtitle">Inicia sesión para continuar</p>
+                    <div id="login-error" class="auth-error hidden"></div>
 
                     <form id="login-form">
                         <div class="form-group">
@@ -47,6 +48,7 @@
                 <div id="register-card" class="hidden">
                     <h1 class="auth-title">Crear Cuenta</h1>
                     <p class="auth-subtitle">Únete a DiviPay hoy</p>
+                    <div id="register-error" class="auth-error hidden"></div>
 
                     <form id="register-form">
                         <div class="form-group">

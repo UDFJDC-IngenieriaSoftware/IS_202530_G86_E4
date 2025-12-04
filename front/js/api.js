@@ -41,9 +41,23 @@ class API {
 
             if (!response.ok) {
                 let errorMessage = data.detail || 'Algo salió mal';
-                if (typeof errorMessage === 'object') {
+
+                // Handle Pydantic validation errors
+                if (Array.isArray(data.detail)) {
+                    const emailError = data.detail.find(err =>
+                        err.loc && err.loc.includes('email') && err.type === 'value_error'
+                    );
+
+                    if (emailError) {
+                        errorMessage = 'Por favor ingresa un correo electrónico válido (ejemplo: usuario@dominio.com)';
+                    } else {
+                        // Generic validation error message
+                        errorMessage = data.detail.map(err => err.msg).join(', ');
+                    }
+                } else if (typeof errorMessage === 'object') {
                     errorMessage = JSON.stringify(errorMessage);
                 }
+
                 throw new Error(errorMessage);
             }
 

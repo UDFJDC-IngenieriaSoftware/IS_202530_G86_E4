@@ -398,3 +398,11 @@ expenseDetailsModal.addEventListener('click', (e) => {
 
 // Init
 loadGroup();
+
+// Mobile Menu Toggle
+function toggleMobileMenu() {
+    const mobileMenu = document.getElementById('mobile-menu');
+    const hamburger = document.querySelector('.hamburger-btn');
+    mobileMenu.classList.toggle('hidden');
+    hamburger.classList.toggle('active');
+}

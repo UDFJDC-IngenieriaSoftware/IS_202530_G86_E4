@@ -1,0 +1,10 @@
+.hero h1 .highlight {
+    background: linear-gradient(135deg, #10b981, #059669);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: block;
+    animation: fadeInUp 0.6s ease-out 0.2s backwards;
+    position: relative;
+    min-height: 1.2em;
+}

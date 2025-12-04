@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -31,7 +31,7 @@
         <div class="hero-content">
             <h1>
                 Paga en grupo<br>
-                <span class="highlight">No te compliques</span>
+                <span class="highlight" id="rotating-text">No te compliques</span>
             </h1>
             <p>
                 Que tu grupo no se divida por el dinero, que tu dinero se divida en tu grupo<br>
@@ -47,7 +47,7 @@
                         <div class="phone-label">Balance Total</div>
                         <div class="phone-balance">$0.00</div>
                         <div class="phone-status">
-                            ✓ Cuentas saldadas
+                            ? Cuentas saldadas
                         </div>
                     </div>
                 </div>
@@ -92,17 +92,23 @@
     <section class="features" id="features">
         <div class="features-grid">
             <div class="feature">
-                <div class="feature-icon">💰</div>
+                <div class="feature-icon">
+                    <img src="money.gif" alt="Money" class="feature-gif">
+                </div>
                 <h3>División Inteligente</h3>
                 <p>Divide gastos equitativamente, por porcentaje o manualmente. Tú decides cómo.</p>
             </div>
             <div class="feature">
-                <div class="feature-icon">📊</div>
+                <div class="feature-icon">
+                    <img src="barras.gif" alt="barras" class="feature-gif">
+                </div>
                 <h3>Balance Automático</h3>
                 <p>Calcula automáticamente quién debe a quién y minimiza las transacciones necesarias.</p>
             </div>
             <div class="feature">
-                <div class="feature-icon">👥</div>
+                <div class="feature-icon">
+                    <img src="grupo.webp" alt="grupo" class="feature-gif">
+                </div>
                 <h3>Grupos Ilimitados</h3>
                 <p>Crea grupos para viajes, casa compartida, eventos o cualquier ocasión.</p>
             </div>
@@ -114,6 +120,7 @@
         <h2>Comienza a dividir gastos hoy</h2>
         <a href="login.html" class="btn-register">Crear Cuenta Gratis</a>
     </section>
+    <script src="js/landing.js"></script>
 </body>
 
 </html>

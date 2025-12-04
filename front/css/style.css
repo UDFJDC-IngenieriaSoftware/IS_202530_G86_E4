@@ -560,10 +560,13 @@ button {
         top: 65px;
     }
 }
+
 /* Login Page Specific Styles */
 .split-container {
     display: flex;
-    min-height: 100vh;
+    height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
     background: #0a0a0a;
 }
 
@@ -572,8 +575,9 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 2rem;
+    padding: 1.5rem;
     background: linear-gradient(135deg, rgba(10, 10, 10, 0.95), rgba(16, 185, 129, 0.05));
+    overflow-y: auto;
 }
 
 .split-right {
@@ -582,7 +586,7 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 3rem;
+    padding: 2rem;
     position: relative;
     overflow: hidden;
 }
@@ -607,27 +611,27 @@ button {
 }
 
 .promo-content h2 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 800;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     line-height: 1.2;
 }
 
 .promo-content p {
-    font-size: 1.125rem;
+    font-size: 1rem;
     opacity: 0.95;
-    line-height: 1.6;
-    margin-bottom: 2rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
 }
 
 .phone-mockup {
-    width: 280px;
-    height: 560px;
+    width: 220px;
+    height: 440px;
     background: #1f2937;
-    border-radius: 40px;
-    padding: 12px;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-    margin: 2rem auto;
+    border-radius: 32px;
+    padding: 10px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    margin: 1rem auto;
 }
 
 .phone-screen {
@@ -661,9 +665,9 @@ button {
 }
 
 .phone-balance {
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: 800;
-    margin: 1rem 0;
+    margin: 0.75rem 0;
 }
 
 .auth-form-container {
@@ -675,7 +679,7 @@ button {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .auth-logo-icon {
@@ -684,11 +688,11 @@ button {
 }
 
 .auth-logo-text {
-    height: 120px;
+    height: 100px;
 }
 
 .auth-title {
-    font-size: 2.25rem;
+    font-size: 2rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
     color: #ffffff;
@@ -696,8 +700,8 @@ button {
 
 .auth-subtitle {
     color: #9ca3af;
-    margin-bottom: 2rem;
-    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
 }
 
 .btn-submit {
@@ -762,24 +766,97 @@ button {
     .split-right {
         display: none;
     }
-    
+
     .auth-logo {
         justify-content: center;
         margin-bottom: 3rem;
     }
-    
+
     .auth-logo-icon {
         width: 60px;
         height: 60px;
     }
-    
+
     .auth-title {
         font-size: 1.875rem;
         text-align: center;
     }
-    
+
     .auth-subtitle {
         text-align: center;
     }
 }
 
+/* Auth Error */
+.auth-error {
+    color: var(--error-color);
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+    animation: fadeIn 0.3s ease;
+}
+
+.auth-error.success {
+    color: var(--success-color);
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Button Loading State */
+.btn-loading {
+    color: transparent !important;
+    pointer-events: none;
+    position: relative;
+    width: 48px !important;
+    height: 48px !important;
+    min-width: 48px !important;
+    max-width: 48px !important;
+    padding: 0 !important;
+    border-radius: 50% !important;
+    transition: all 0.3s ease;
+    margin: 0 auto;
+    display: block;
+    background: linear-gradient(135deg, #10b981, #059669);
+    opacity: 0.8;
+}
+
+.btn-loading::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #ffffff;
+    animation: spin 1s ease-in-out infinite;
+    z-index: 2;
+}
+
+@keyframes spin {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
