@@ -1,68 +1,122 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DiviPay - Login</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <title>DiviPay - Divide gastos sin fronteras</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/landing.css">
 </head>
+
 <body>
-    <div class="auth-container">
-        <div class="auth-card card" id="login-card">
-            <h1 class="auth-title">Bienvenido</h1>
-            <p class="auth-subtitle">Inicia sesión para continuar</p>
-            
-            <form id="login-form">
-                <div class="form-group">
-                    <label class="form-label">Email</label>
-                    <input type="email" name="email" class="form-input" required placeholder="tu@email.com">
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Contraseña</label>
-                    <input type="password" name="password" class="form-input" required placeholder="••••••••">
-                </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%">Iniciar Sesión</button>
-            </form>
-
-            <div class="mt-4 text-center">
-                <p class="form-label">
-                    ¿No tienes cuenta? 
-                    <a href="#" onclick="toggleAuth('register')">Regístrate</a>
-                </p>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="#" class="logo">
+            <div class="logo-icon">
+                <img src="/front/logo.png" alt="DiviPay Logo">
             </div>
+            <img src="/front/logoletra.png" alt="DiviPay"
+                style="height: 120px; position: absolute; left: 55px; top: 50%; transform: translateY(-50%);">
+        </a>
+        <div class="nav-links">
+            <a href="#features">Características</a>
+            <a href="login.html" class="btn-register">Iniciar Sesión</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>
+                Paga en grupo<br>
+                <span class="highlight">No te compliques</span>
+            </h1>
+            <p>
+                Que tu grupo no se divida por el dinero, que tu dinero se divida en tu grupo<br>
+                Di adiós a los conflictos por dinero. Di adiós a la incomodidad.
+            </p>
         </div>
 
-        <div class="auth-card card hidden" id="register-card">
-            <h1 class="auth-title">Crear Cuenta</h1>
-            <p class="auth-subtitle">Únete a DiviPay hoy</p>
-            
-            <form id="register-form">
-                <div class="form-group">
-                    <label class="form-label">Nombre Completo</label>
-                    <input type="text" name="full_name" class="form-input" required placeholder="Juan Pérez">
+        <div class="phones-container">
+            <div class="phone">
+                <div class="phone-screen">
+                    <div class="phone-notch"></div>
+                    <div class="phone-content">
+                        <div class="phone-label">Balance Total</div>
+                        <div class="phone-balance">$0.00</div>
+                        <div style="margin-top: 2rem; opacity: 0.8;">
+                            ✓ Cuentas saldadas
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label class="form-label">Email</label>
-                    <input type="email" name="email" class="form-input" required placeholder="tu@email.com">
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Contraseña</label>
-                    <input type="password" name="password" class="form-input" required placeholder="••••••••">
-                </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%">Registrarse</button>
-            </form>
+            </div>
 
-            <div class="mt-4 text-center">
-                <p class="form-label">
-                    ¿Ya tienes cuenta? 
-                    <a href="#" onclick="toggleAuth('login')">Inicia Sesión</a>
-                </p>
+            <div class="phone">
+                <div class="phone-screen" style="background: linear-gradient(135deg, #059669, #047857);">
+                    <div class="phone-notch"></div>
+                    <div class="phone-content">
+                        <div class="phone-label">Mis Grupos</div>
+                        <div style="margin-top: 2rem;">
+                            <div
+                                style="background: rgba(255,255,255,0.2); padding: 1rem; border-radius: 12px; margin-bottom: 0.75rem;">
+                                <div style="font-weight: 600;">Viaje a la Playa</div>
+                                <div style="font-size: 0.875rem; opacity: 0.8;">3 miembros</div>
+                            </div>
+                            <div
+                                style="background: rgba(255,255,255,0.2); padding: 1rem; border-radius: 12px; margin-bottom: 0.75rem;">
+                                <div style="font-weight: 600;">Casa Compartida</div>
+                                <div style="font-size: 0.875rem; opacity: 0.8;">4 miembros</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="phone">
+                <div class="phone-screen" style="background: linear-gradient(135deg, #10b981, #34d399);">
+                    <div class="phone-notch"></div>
+                    <div class="phone-content">
+                        <div class="phone-label">Último Gasto</div>
+                        <div
+                            style="margin-top: 2rem; background: rgba(255,255,255,0.2); padding: 1.5rem; border-radius: 16px;">
+                            <div style="font-size: 1.125rem; font-weight: 600; margin-bottom: 0.5rem;">Netflix</div>
+                            <div class="phone-balance" style="font-size: 2rem; margin: 1rem 0;">$20,000</div>
+                            <div style="font-size: 0.875rem; opacity: 0.8;">Dividido entre 2 personas</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <script src="js/api.js"></script>
-    <script src="js/auth.js"></script>
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="features-grid">
+            <div class="feature">
+                <div class="feature-icon">💰</div>
+                <h3>División Inteligente</h3>
+                <p>Divide gastos equitativamente, por porcentaje o manualmente. Tú decides cómo.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📊</div>
+                <h3>Balance Automático</h3>
+                <p>Calcula automáticamente quién debe a quién y minimiza las transacciones necesarias.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">👥</div>
+                <h3>Grupos Ilimitados</h3>
+                <p>Crea grupos para viajes, casa compartida, eventos o cualquier ocasión.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <h2>Comienza a dividir gastos hoy</h2>
+        <a href="login.html" class="btn-register">Crear Cuenta Gratis</a>
+    </section>
 </body>
+
 </html>

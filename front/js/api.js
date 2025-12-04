@@ -11,7 +11,7 @@ class API {
 
     static logout() {
         localStorage.removeItem('token');
-        window.location.href = '/front/index.html';
+        window.location.href = '/front/login.html';
     }
 
     static async request(endpoint, options = {}) {

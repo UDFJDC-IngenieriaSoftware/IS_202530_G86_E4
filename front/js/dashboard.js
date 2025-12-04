@@ -1,6 +1,6 @@
 // Check auth
 if (!API.token) {
-    window.location.href = 'index.html';
+    window.location.href = 'login.html';
 }
 
 // Profile Modal Logic

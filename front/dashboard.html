@@ -7,22 +7,66 @@
     <title>DiviPay - Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <!DOCTYPE html>
-    <html lang="es">
+    <style>
+        .navbar {
+            padding: 0.05rem 0;
+            /* Reduce la altura de la navbar */
+        }
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>DiviPay - Dashboard</title>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-            rel="stylesheet">
-        <link rel="stylesheet" href="css/style.css">
-    </head>
+        /* Navbar logo styles */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+        }
+
+        /* Group card button styles - Clean and simple */
+        .group-card {
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+        }
+
+        .group-card:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--primary-color);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .group-card:active {
+            transform: translateY(-1px);
+        }
+
+        .group-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        .group-card p {
+            color: var(--text-muted);
+            font-size: 0.9375rem;
+        }
+    </style>
+</head>
 
 <body>
     <nav class="navbar">
         <div class="container nav-content">
-            <a href="dashboard.html" class="logo">DiviPay</a>
+            <a href="dashboard.html" class="logo">
+                <img src="/front/logo.png" alt="DiviPay" class="logo-icon">
+                <img src="/front/logoletra.png" alt="DiviPay" style="height: 120px;">
+            </a>
             <div>
                 <span id="user-name" style="margin-right: 1rem; color: var(--text-muted);"></span>
                 <button onclick="openProfileModal()" class="btn btn-outline" style="margin-right: 0.5rem;">Mi

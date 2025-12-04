@@ -1,13 +1,13 @@
 :root {
-    --primary-color: #6366f1;
-    --primary-hover: #4f46e5;
-    --bg-color: #0f172a;
-    --card-bg: #1e293b;
-    --text-color: #f8fafc;
-    --text-muted: #94a3b8;
-    --border-color: #334155;
+    --primary-color: #10b981;
+    --primary-hover: #059669;
+    --bg-color: #0a0a0a;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --text-color: #ffffff;
+    --text-muted: #9ca3af;
+    --border-color: rgba(255, 255, 255, 0.1);
     --error-color: #ef4444;
-    --success-color: #22c55e;
+    --success-color: #10b981;
     --font-family: 'Inter', sans-serif;
 }
 
@@ -20,6 +20,7 @@
 body {
     font-family: var(--font-family);
     background-color: var(--bg-color);
+    background-image: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.1), transparent 50%);
     color: var(--text-color);
     line-height: 1.6;
     min-height: 100vh;
@@ -55,26 +56,6 @@ button {
     align-items: center;
     justify-content: center;
     padding: 0.75rem 1.5rem;
-    border-radius: 0.5rem;
-    font-weight: 600;
-    border: none;
-    transition: all 0.3s ease;
-}
-
-.btn-primary {
-    background-color: var(--primary-color);
-    color: white;
-}
-
-.btn-primary:hover {
-    background-color: var(--primary-hover);
-    transform: translateY(-1px);
-}
-
-.btn-outline {
-    background-color: transparent;
-    border: 1px solid var(--border-color);
-    color: var(--text-color);
 }
 
 .btn-outline:hover {
@@ -103,24 +84,17 @@ button {
     transition: border-color 0.3s;
 }
 
-.form-input:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+.mt-4 {
+    margin-top: 1rem;
 }
 
-.card {
-    background-color: var(--card-bg);
-    border-radius: 1rem;
-    padding: 2rem;
-    border: 1px solid var(--border-color);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+.mb-4 {
+    margin-bottom: 1rem;
 }
 
-.text-center { text-align: center; }
-.mt-4 { margin-top: 1rem; }
-.mb-4 { margin-bottom: 1rem; }
-.hidden { display: none !important; }
+.hidden {
+    display: none !important;
+}
 
 /* Auth Pages */
 .auth-container {
@@ -239,5 +213,10 @@ button {
     transform: translateY(0);
 }
 
-.toast.success { border-left: 4px solid var(--success-color); }
-.toast.error { border-left: 4px solid var(--error-color); }
+.toast.success {
+    border-left: 4px solid var(--success-color);
+}
+
+.toast.error {
+    border-left: 4px solid var(--error-color);
+}

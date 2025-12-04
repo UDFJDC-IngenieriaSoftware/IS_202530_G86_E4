@@ -48,7 +48,15 @@ app.mount("/front", StaticFiles(directory=FRONTEND_PATH), name="front")
 
 @app.get("/")
 def root():
-    return FileResponse(os.path.join(FRONTEND_PATH, "index.html"))
+    response = FileResponse(os.path.join(FRONTEND_PATH, "index.html"))
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "0"
+    return response
+
+@app.get("/login.html")
+def login_page():
+    return FileResponse(os.path.join(FRONTEND_PATH, "login.html"))
 
 @app.get("/dashboard.html")
 def dashboard():
