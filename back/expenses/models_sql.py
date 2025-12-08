@@ -1,18 +1,21 @@
 from sqlalchemy import Column, Integer, String, Float, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 from database import Base
-from datetime import datetime
+from datetime import datetime, timezone
+
+USERS_ID_COL = "users.id"
 
 class Expense(Base):
     __tablename__ = "expenses"
 
+
     id = Column(Integer, primary_key=True, index=True)
     group_id = Column(Integer, ForeignKey("groups.id"))
-    created_by = Column(Integer, ForeignKey("users.id"))
-    paid_by = Column(Integer, ForeignKey("users.id"))
+    created_by = Column(Integer, ForeignKey(USERS_ID_COL))
+    paid_by = Column(Integer, ForeignKey(USERS_ID_COL))
     title = Column(String, nullable=False)
     amount_total = Column(Float, nullable=False)
-    date = Column(DateTime, default=datetime.utcnow)
+    date = Column(DateTime, default=datetime.now(timezone.utc))
 
     # Relaciones
     group = relationship("Group", back_populates="expenses")
@@ -25,7 +28,7 @@ class ExpenseParticipant(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     expense_id = Column(Integer, ForeignKey("expenses.id"))
-    user_id = Column(Integer, ForeignKey("users.id"))
+    user_id = Column(Integer, ForeignKey(USERS_ID_COL))
     amount_owed = Column(Float, nullable=False)
     percentage = Column(Float)  # opcional
 

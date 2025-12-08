@@ -19,7 +19,7 @@ class ExpenseParticipantOut(BaseModel):
     user_id: int
     amount_owed: float
     percentage: Optional[float]
-    participant_name: str = None
+    participant_name: Optional[str] = None   # <- corregido
 
     class Config:
         orm_mode = True
@@ -41,10 +41,10 @@ class ExpenseOut(BaseModel):
     amount_total: float
     group_id: int
     created_by: int
-    created_at: str = None
+    created_at: Optional[str] = None
     paid_by: int
-    payer_name: str = None
-    creator_name: str = None
+    payer_name: Optional[str] = None
+    creator_name: Optional[str] = None
     participants: List[ExpenseParticipantOut]
 
     class Config:

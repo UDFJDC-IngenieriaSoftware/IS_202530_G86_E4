@@ -18,6 +18,9 @@ from auth.router import router as auth_router  # tu router de login existente
 from users.router import router as users_router
 from groups.router import router as groups_router
 from expenses.router import router as expenses_router
+from pdf.router import router as pdf_router
+from invoices.router import router as invoices_router
+
 
 Base.metadata.create_all(bind=engine)
 
@@ -36,6 +39,8 @@ app.include_router(auth_router)
 app.include_router(users_router)
 app.include_router(groups_router)
 app.include_router(expenses_router)
+app.include_router(pdf_router)
+app.include_router(invoices_router)
 
 # Servir archivos estáticos del frontend
 FRONTEND_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "front")
