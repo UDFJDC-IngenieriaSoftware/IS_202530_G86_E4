@@ -4,9 +4,9 @@ from sqlalchemy.orm import Session
 
 from database import get_db
 from .schemas import InvoiceCreate, InvoiceOut
-from pdf.service import expense_receipt
+from pdf.service import PDFService
 from .repository import create_invoice, get_invoices_by_group
-from groups.repository import get_group_by_id
+from groups.repository import get_group
 from expenses.repository import get_expenses_by_group
 from users.repository import get_user_by_id
 
@@ -26,7 +26,7 @@ def list_group_invoices(group_id: int, db: Session = Depends(get_db)):
 
 @router.post("/generate/{group_id}", response_model=InvoiceOut)
 def generate_invoice(group_id: int, db: Session = Depends(get_db)):
-    group = get_group_by_id(db, group_id)
+    group = get_group(db, group_id)
     if not group:
         raise HTTPException(status_code=404, detail="Grupo no encontrado")
 
@@ -34,18 +34,21 @@ def generate_invoice(group_id: int, db: Session = Depends(get_db)):
     if not expenses:
         raise HTTPException(status_code=400, detail="El grupo no tiene gastos")
 
-    created_by = get_user_by_id(db, group.owner_id)
+    created_by = get_user_by_id(db, group.created_by)
     if not created_by:
         raise HTTPException(status_code=404, detail="Usuario creador no encontrado")
 
-    pdf_bytes, total_expenses = expense_receipt(expenses, group, created_by)
+    # Note: This would need a different PDF generation method for multiple expenses
+    # For now, this endpoint might need to be redesigned or removed
+    # pdf_buffer = PDFService.expense_receipt(expenses[0], group, created_by, [])
 
-    invoice_data = InvoiceCreate(
-        group_id=group.id,
-        pdf_file=pdf_bytes,
-        total_amount=total_expenses
-    )
-    invoice_record = create_invoice(db, invoice_data)
+    raise HTTPException(status_code=501, detail="Generación de factura grupal no implementada aún")
 
-    return invoice_record
+    # invoice_data = InvoiceCreate(
+    #     group_id=group.id,
+    #     pdf_file=pdf_bytes,
+    #     total_amount=total_expenses
+    # )
+    # invoice_record = create_invoice(db, invoice_data)
+    # return invoice_record
 

@@ -11,6 +11,7 @@ if (!groupId) {
 }
 
 let currentMembers = [];
+let currentExpenseId = null;
 
 // Load Group Details
 async function loadGroup() {
@@ -90,6 +91,9 @@ async function showExpenseDetails(expenseId) {
     const modal = document.getElementById('expense-details-modal');
     const content = document.getElementById('expense-details-content');
 
+    // Store current expense ID for PDF download
+    currentExpenseId = expenseId;
+
     content.innerHTML = '<p class="text-muted">Cargando detalles...</p>';
     modal.classList.remove('hidden');
 
@@ -151,6 +155,24 @@ async function showExpenseDetails(expenseId) {
 
 function closeExpenseDetailsModal() {
     document.getElementById('expense-details-modal').classList.add('hidden');
+}
+
+// Download Expense PDF
+function downloadExpensePDF() {
+    if (!currentExpenseId) {
+        showToast('No hay gasto seleccionado', 'error');
+        return;
+    }
+
+    try {
+        // Open PDF in new tab
+        const pdfUrl = `${API_URL || ''}/expenses/${currentExpenseId}/pdf`;
+        window.open(pdfUrl, '_blank');
+        showToast('Abriendo PDF...', 'success');
+    } catch (error) {
+        showToast('Error al generar PDF', 'error');
+        console.error('PDF Error:', error);
+    }
 }
 
 // Modals

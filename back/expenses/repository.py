@@ -66,3 +66,13 @@ def get_expenses_by_group(db: Session, group_id: int):
 
 def get_expense_detail(db: Session, expense_id: int):
     return db.query(Expense).filter(Expense.id == expense_id).first()
+
+
+def get_expense_by_id(db: Session, expense_id: int):
+    """Get expense by ID with all relationships loaded"""
+    return db.query(Expense).filter(Expense.id == expense_id).first()
+
+
+def get_expense_participants(db: Session, expense_id: int):
+    """Get all participants for a specific expense"""
+    return db.query(ExpenseParticipant).filter(ExpenseParticipant.expense_id == expense_id).all()
